@@ -7,24 +7,32 @@ import Technical from './pages/Technical';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Support from './pages/Support';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function App() {
   
-const playWelcomeSound = () => {
-  const audio = new Audio('/sound.mp3');
-  audio.volume = 0.5; // Уровень громкости от 0 до 1
-  audio.play().catch((error) => {
-    console.log('Autoplay prevented:', error);
-  });
-
-
-};
+ const [soundPlayed, setSoundPlayed] = useState(false);
 
   useEffect(() => {
-    playWelcomeSound();
-  }, []);
+    console.log("ffsfdsf")
+    const playSound = () => {
+      if (!soundPlayed) {
+        const audio = new Audio('/sound.mp3');
+        audio.volume = 0.5;
+        audio.play().catch(err => console.log('Play error:', err));
+        setSoundPlayed(true);
+        document.removeEventListener('click', playSound);
+      }
+    };
+
+    document.addEventListener('click', playSound);
+
+    return () => {
+      document.removeEventListener('click', playSound);
+    };
+  }, [soundPlayed]);
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gradient-to-b from-neutral-900 to-neutral-800 text-gray-100">
