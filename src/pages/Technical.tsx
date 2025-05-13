@@ -1,4 +1,3 @@
-import React from 'react';
 import { PenTool as Tool, Settings, Gauge } from 'lucide-react';
 
 const Technical = () => {
