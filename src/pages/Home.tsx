@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
+import { motorcycleData } from '../data/motorcycles';
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: (delay = 0) => ({
@@ -15,30 +15,22 @@ const fadeInUp = {
   })
 };
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  }),
+};
+
+
 const Home = () => {
-  const models = [
-    {
-      id: 'izh-planeta-5',
-      name: 'ІЖ Планета-5',
-      image: '/moto/izh-planeta-5.webp',
-      year: '1987-2008',
-      description: 'Класичний радянський мотоцикл з одноциліндровим двигуном'
-    },
-    {
-      id: 'izh-planeta-4',
-      name: 'ІЖ Планета 4',
-      image: '/moto/izh-planeta-4.webp',
-      year: '1985-2000',
-      description: 'Потужний двохциліндровий мотоцикл для любителів швидкості'
-    },
-    {
-      id: 'izh-49',
-      name: 'ІЖ-49',
-      image: '/moto/izh-49.webp',
-      year: '1951-1958',
-      description: 'Легендарний післявоєнний мотоцикл, поклавший початок епохи'
-    }
-  ];
+ 
 
   return (
     <div>
@@ -81,15 +73,15 @@ const Home = () => {
             Популярні моделі
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {models.map((model, index) => (
+            {motorcycleData.map((model, index) => (
               <motion.div
-                key={model.id}
-                className="group will-change-transform relative bg-neutral-800 rounded-xl overflow-hidden transform hover:-translate-y-1 transition-all duration-300 hover:shadow-2xl"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                custom={index * 0.2}
-                variants={fadeInUp}
+              key={model.id}
+              className="group will-change-transform relative bg-neutral-800 rounded-xl overflow-hidden transform hover:-translate-y-1 transition-all duration-300 hover:shadow-2xl"
+              custom={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={cardVariants}
               >
                 <div className="relative h-64 overflow-hidden">
                   <img

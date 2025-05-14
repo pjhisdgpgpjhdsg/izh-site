@@ -13,13 +13,13 @@ const ModelDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Модель не найдена</h2>
+          <h2 className="text-2xl font-bold mb-4">Модель не знайдена</h2>
           <button
             onClick={() => navigate('/models')}
             className="text-red-500 hover:text-red-400 flex items-center"
           >
             <ArrowLeft className="mr-2 h-5 w-5" />
-            Вернуться к списку моделей
+            Повернутись до списку моделей
           </button>
         </div>
       </div>
@@ -34,7 +34,7 @@ const ModelDetail = () => {
           className="text-red-500 hover:text-red-400 flex items-center mb-8"
         >
           <ArrowLeft className="mr-2 h-5 w-5" />
-          Вернуться к списку моделей
+          Повернутись до списку моделей
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

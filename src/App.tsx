@@ -15,7 +15,6 @@ function App() {
  const [soundPlayed, setSoundPlayed] = useState(false);
 
   useEffect(() => {
-    console.log("ffsfdsf")
     const playSound = () => {
       if (!soundPlayed) {
         const audio = new Audio('/sound.mp3');
