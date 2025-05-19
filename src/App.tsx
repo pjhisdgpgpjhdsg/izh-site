@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Models from './pages/Models';
 import ModelDetail from './pages/ModelDetail';
@@ -8,11 +8,28 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Support from './pages/Support';
 import { useEffect, useState } from 'react';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
+// Wrapper component to trigger NProgress on route change
+function RouteChangeTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    NProgress.start();
+    NProgress.set(0.4); // Optional: set initial value
+    const timer = setTimeout(() => {
+      NProgress.done();
+    }, 300); // simulate a short delay
+
+    return () => clearTimeout(timer);
+  }, [location]);
+
+  return null;
+}
 
 function App() {
-  
- const [soundPlayed, setSoundPlayed] = useState(false);
+  const [soundPlayed, setSoundPlayed] = useState(false);
 
   useEffect(() => {
     const playSound = () => {
@@ -34,6 +51,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <RouteChangeTracker />
       <div className="min-h-screen bg-gradient-to-b from-neutral-900 to-neutral-800 text-gray-100">
         <Navbar />
         <Routes>

@@ -3,3 +3,18 @@
 html {
     scroll-behavior: smooth;
 }
+
+/* NProgress custom styles */
+#nprogress .bar {
+  background: #ef4444 !important; /* Tailwind's red-500 */
+  height: 5px !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #ef4444, 0 0 5px #ef4444;
+}
+
+
+#nprogress .spinner {
+    display: none !important;
+}
